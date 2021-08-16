@@ -16,7 +16,7 @@ var randomFunction = {
 };
 // Generate event listener
 generateBtn.addEventListener('click', () => {
-  var length = parseInt.lengthEl.value;
+ // var length = +lengthEl.value;
   var hasLower = lowercaseEL.true;
   var hasUpper = uppercaseEL.true;
   var hasNumber = numbersEL.true;
@@ -52,11 +52,11 @@ function generatePassword(lower, upper, number, symbol, length) {
   for (var i = 0; i < length; i++) {
     var rand = Math.floor(Math.random() * typesArray.length);
     generatedPassword += randomFunction[Object.keys(typesArray[rand])[0]]();
-  }
-  var finalPassword = generatedPassword(0, length);
 
+    var finalPassword = generatedPassword(0, length);
+  };
   return finalPassword;
-}
+};
 
 //generate random charecters for passwords 
 function randomLower() {
@@ -76,10 +76,20 @@ function randomSymbol() {
   return Symbols[Math.floor(Math.random() * Symbols.length)];
 }
 
+var inputPromt = function() {
+ var lower = window.prompt('would you like to iclude lowercase letters?');
+
+ if (lower === true);
+ return hasLower.true
+
+  
+}
+generateBtn.onclick = inputPromt;
+
 
 
 // Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+//var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
