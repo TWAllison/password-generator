@@ -3,6 +3,7 @@
 
 
   [![license](https://img.shields.io/badge/license--success)](https://shields.io)
+![password screenshot](https://user-images.githubusercontent.com/87498548/149688988-1a1124c2-83f5-44f1-aee5-9a285a7f50d2.PNG)
 
   ## Description
   This Project is a simple JS web app to generate passwords from 8 to 128 charecters in length. It can generate passwords using uppercase and lowercase letters as well numbers and special charecters.
