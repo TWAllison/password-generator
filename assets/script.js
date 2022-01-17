@@ -1,95 +1,85 @@
 // Assignment code here
-var resultEL = document.getElementById('result');
-var lengthEl = document.getElementById('length');
-var uppercaseEL = document.getElementById('uppercase');
-var lowercaseEL = document.getElementById('lowercase');
-var numbersEL = document.getElementById('numbers');
-var symbolsEL = document.getElementById('symbols');
-var generateBtn = document.getElementById('generate');
+var charArray = [];
+var newArray = [];
+var newPassword = ''
 
+// function to reset values 
+function reset() {
+  charArray = [];
+  newArray = [];
+  newPassword = ''
+  document.querySelector('#password').value = '';
+}
 
-var randomFunction = {
-  lower: randomLower,
-  upper: randomUpper,
-  number: randomNumber,
-  symbol: randomSymbol
+// generate a random number in the charArray
+function randomNum (lengthOfArray) {
+  var result = Math.floor(Math.random() * lengthOfArray)
+  return result
+}
+
+//function to add correct char code to charArray
+function arrayLowtoHigh(low, high) {
+  for (var i = low; i <= high; i++) {
+    charArray.push(i)
+  }
 };
-// Generate event listener
-generateBtn.addEventListener('click', () => {
- // var length = +lengthEl.value;
-  var hasLower = lowercaseEL.true;
-  var hasUpper = uppercaseEL.true;
-  var hasNumber = numbersEL.true;
-  var hasSymbol = symbolsEL.true;
 
-  resultEl.innerText = generatePassword(
-    hasLower,
-    hasUpper,
-    hasNumber,
-    hasSymbol,
-    length
-  );
-});
-
-//generate password function
-function generatePassword(lower, upper, number, symbol, length) {
-  //initialize password var
-  //filter out false values 
-  //loop over lenght call generator functionfor each type
-  // add final password to var and return
-
-  var generatedPassword = '';
-
-  var typesCount = lower + upper + number + Symbol;
-
-  var typesArray = [{ lower }, { upper }, { number }, { symbol }].filter
-    (item => Object.values(item)[0]);
-
-  if (typesCount === 0) {
-    return '';
+// get password criteria ( lowercase, uppercase, numbers, symbols/special charecters)
+// https://www.charset.org/utf-8  this is a list of charecter codes if you would like to add additional charecters
+function pwCriteria() {
+  var lowerCase = confirm('Include Lowercase Charecters?')
+  if (lowerCase) {
+    arrayLowtoHigh(97,122)
   }
 
-  for (var i = 0; i < length; i++) {
-    var rand = Math.floor(Math.random() * typesArray.length);
-    generatedPassword += randomFunction[Object.keys(typesArray[rand])[0]]();
+  var upperCase = confirm('Include Uppercase Charecters?')
+  if (upperCase) {
+    arrayLowtoHigh(65, 90)
+  }
 
-    var finalPassword = generatedPassword(0, length);
-  };
-  return finalPassword;
-};
-
-//generate random charecters for passwords 
-function randomLower() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
-
-function randomUpper() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
-
-function randomNumber() {
-  return Math.floor(Math.random() * 10);
-}
-
-function randomSymbol() {
-  var Symbols = '!#$%&*+,-.:;<=>?@^_{}~';
-  return Symbols[Math.floor(Math.random() * Symbols.length)];
-}
-
-var inputPromt = function() {
- var lower = window.prompt('would you like to iclude lowercase letters?');
-
- if (lower === true);
- return hasLower.true
-
+  var numbers = confrm('Include Numbers ?')
+  if (numbers) {
+    arrayLowtoHigh(48, 57)
+  }
   
+  var specChar = confirm('Include Special Charecters and Symbols?')
+  if (specChar) {
+    arrayLowtoHigh(33 ,47)
+  }
+  if (specChar) {
+    arrayLowtoHigh(58, 64)
+  }
+  if (specChar) {
+    arrayLowtoHigh(91, 96)
+  }
+
+  if (charArray.length === 0) {
+    alert('You must include 1 or more chritera.')
+    pwCriteria();
+  }
 }
-generateBtn.onclick = inputPromt;
 
+// generate the password 
+function generatePassword() {
+  reset();
 
+  pwLength = parseInt(prompt('How Many Charecters in Lenght Would You Like Your Password? Choose between 8 and 128'))
+  if(pwLength >= 8 && pwLength <= 128) {
+    generatePassword();
+  }
+
+  for (var i =0; i < pwLength; i++) {
+    newArray.push(String.fromCharCode(charArray[randomNum(charArray.length)]));
+  }
+
+  for (i =0; i < newArray.length; i++) {
+    newPassword += newArray[i]
+  }
+  return newPassword
+}
 
 // Get references to the #generate element
-//var generateBtn = document.querySelector("#generate");
+var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
