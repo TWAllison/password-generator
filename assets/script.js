@@ -37,7 +37,7 @@ function pwCriteria() {
     arrayLowtoHigh(65, 90)
   }
 
-  var numbers = confrm('Include Numbers ?')
+  var numbers = confirm('Include Numbers ?')
   if (numbers) {
     arrayLowtoHigh(48, 57)
   }
@@ -65,7 +65,11 @@ function generatePassword() {
 
   pwLength = parseInt(prompt('How Many Charecters in Lenght Would You Like Your Password? Choose between 8 and 128'))
   if(pwLength >= 8 && pwLength <= 128) {
-    generatePassword();
+    pwCriteria();
+  }
+  else {
+    alert("Choose a Length between 8 and 128!")
+    generatePassword()
   }
 
   for (var i =0; i < pwLength; i++) {
